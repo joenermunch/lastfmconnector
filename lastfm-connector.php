@@ -1,13 +1,13 @@
 <?php
 /*
 Plugin Name: Lastfm Connector
-Plugin URI: [Plugin URI]
-Description: [Short Description of the plugin]
-Version: [Version Number]
-Author: [Author Name]
-Author URI: [Author URI]
-License: [License]
-Text Domain: [Text Domain for localization]
+Plugin URI: https://joener.io
+Description: A plugin that allows the user to showcase their top tracks using Last.fm's API.
+Version: 0.1
+Author: Joener Münch
+Author URI: https://joener.io
+License: GPL
+Text Domain: lastfm-connector
 */
 
 defined( 'ABSPATH' ) or die( 'Not authorized.' );
