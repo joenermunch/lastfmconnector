@@ -1,0 +1,17 @@
+{
+    "name": "joener/lastfm-connector",
+    "description": "Show lastfm stats on your wordpress site",
+    "type": "project",
+    "license": "GPL",
+    "authors": [
+        {
+            "name": "Joener Münch",
+            "email": "dev.joener@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {"Inc\\": "./inc"}
+    }
+}
