@@ -6,27 +6,38 @@
 
 namespace Inc\Pages;
 
-class Admin {
+use Inc\Api\SettingsAPI;
+use Inc\Base\BaseController;
+use Inc\Api\Callbacks\AdminCallbacks;
 
+class Admin extends BaseController {
+
+	public $settings;
+	public $callbacks;
+	public $pages = array();
+	
 
 	public function register() {
-		add_action( 'admin_menu', array( $this, 'add_admin_pages' ) );
+
+		$this->settings = new SettingsAPI();
+		$this->callbacks = new AdminCallbacks();
+		$this->setPages();
+		$this->settings->addPages( $this->pages )->register();
 	}
 
-	public function add_admin_pages() {
-		add_menu_page(
-			'LastFM Connector Settings',
-			'LastFM Connector',
-			'manage_options',
-			'lastfm_connector',
-			array( $this, 'admin_pages' ),
-			'dashicons-playlist-audio',
-			110
+	function setPages() {
+		$this->pages = array(
+			array(
+				'page_title' => 'LastFM Connector Settings',
+				'menu_title' => 'LastFM Connector',
+				'capability' => 'manage_options',
+				'menu_slug'  => 'lastfm_connector',
+				'callback'   => array($this->callbacks, 'adminDashboard'),
+				'icon_url'   => 'dashicons-playlist-audio',
+				'position'   => 110,
+			),
 		);
 	}
 
-	public function admin_pages() {
-		require_once PLUGIN_PATH . '/templates/admin.php';
-	}
 
 }

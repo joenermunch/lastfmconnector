@@ -18,6 +18,7 @@ final class Init {
 		return array(
 			Pages\Admin::class,
 			Base\Enqueue::class,
+			Base\SettingsLinks::class,
 		);
 	}
 
