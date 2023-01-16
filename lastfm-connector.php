@@ -36,6 +36,16 @@ function deactivate_lastfm_connector() {
 }
 register_deactivation_hook( __FILE__, 'deactivate_lastfm_connector' );
 
+if ( ! function_exists( 'twitter_api_get' ) ) {
+	require __DIR__ . '/twitter-api/wp-twitter-api/twitter-api.php';
+}
+
+// twitter_api_post(
+// 	'statuses/update',
+// 	array(
+// 		'status' => 'a',
+// 	)
+// );
 
 // Initializes all of the core classes
 if ( class_exists( 'Inc\\Init' ) ) {
