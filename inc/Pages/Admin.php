@@ -50,6 +50,11 @@ class Admin extends BaseController {
 				'option_name'  => 'last_fm_api_key',
 				'callback'     => array( $this->callbacks, 'optionsGroup' ),
 			),
+			array(
+				'option_group' => 'lastfm_connector_options_group',
+				'option_name'  => 'global_username',
+				'callback'     => array( $this->callbacks, 'optionsGroup' ),
+			),
 		);
 
 		$this->settings->setSettings( $args );
@@ -78,6 +83,17 @@ class Admin extends BaseController {
 				'section'  => 'lastfm_connector_admin_index',
 				'args'     => array(
 					'label_for' => 'last_fm_api_key',
+					'class'     => 'form-fm',
+				),
+			),
+			array(
+				'id'       => 'global_username',
+				'title'    => 'Global Username',
+				'callback' => array( $this->callbacks, 'globalUsernameInput' ),
+				'page'     => 'lastfm_connector',
+				'section'  => 'lastfm_connector_admin_index',
+				'args'     => array(
+					'label_for' => 'global_username',
 					'class'     => 'form-fm',
 				),
 			),
