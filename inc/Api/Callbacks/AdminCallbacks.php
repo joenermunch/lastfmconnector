@@ -29,4 +29,11 @@ class AdminCallbacks extends BaseController {
 		echo '<input type="text" class="regular-text" name="last_fm_api_key" value="' . $value . '" placeholder="Last.fm API Key">';
 	}
 
+	public function globalUsernameInput() {
+
+		$value = esc_attr( get_option( 'global_username' ) );
+
+		echo '<input type="text" class="regular-text" name="global_username" value="' . $value . '" placeholder="Global username">';
+	}
+
 }
