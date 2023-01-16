@@ -15,13 +15,17 @@ class Admin extends BaseController {
 	public $settings;
 	public $callbacks;
 	public $pages = array();
-	
+
 
 	public function register() {
 
-		$this->settings = new SettingsAPI();
+		$this->settings  = new SettingsAPI();
 		$this->callbacks = new AdminCallbacks();
 		$this->setPages();
+		$this->setSettings();
+		$this->setSections();
+		$this->setFields();
+
 		$this->settings->addPages( $this->pages )->register();
 	}
 
@@ -32,12 +36,54 @@ class Admin extends BaseController {
 				'menu_title' => 'LastFM Connector',
 				'capability' => 'manage_options',
 				'menu_slug'  => 'lastfm_connector',
-				'callback'   => array($this->callbacks, 'adminDashboard'),
+				'callback'   => array( $this->callbacks, 'adminDashboard' ),
 				'icon_url'   => 'dashicons-playlist-audio',
 				'position'   => 110,
 			),
 		);
 	}
 
+	function setSettings() {
+		$args = array(
+			array(
+				'option_group' => 'lastfm_connector_options_group',
+				'option_name'  => 'last_fm_api_key',
+				'callback'     => array( $this->callbacks, 'optionsGroup' ),
+			),
+		);
+
+		$this->settings->setSettings( $args );
+	}
+
+	function setSections() {
+		$args = array(
+			array(
+				'id'       => 'lastfm_connector_admin_index',
+				'title'    => 'Settings',
+				'callback' => array( $this->callbacks, 'adminSection' ),
+				'page'     => 'lastfm_connector',
+			),
+		);
+
+		$this->settings->setSections( $args );
+	}
+
+	function setFields() {
+		$args = array(
+			array(
+				'id'       => 'last_fm_api_key',
+				'title'    => 'Last.fm API Key',
+				'callback' => array( $this->callbacks, 'apiInput' ),
+				'page'     => 'lastfm_connector',
+				'section'  => 'lastfm_connector_admin_index',
+				'args'     => array(
+					'label_for' => 'last_fm_api_key',
+					'class'     => 'form-fm',
+				),
+			),
+		);
+
+		$this->settings->setFields( $args );
+	}
 
 }
