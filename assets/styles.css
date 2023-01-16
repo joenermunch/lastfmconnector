@@ -1,0 +1,31 @@
+.stats-fm {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.stats-fm li {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+ul.stats-fm img {
+    width: 100px;
+}
+
+.stats-fm li span {
+    font-size: 16px;
+}
+
+.stats-fm li span:nth-child(2) {
+    width: 100%;
+    max-width: 250px;
+}
+
+.stats-fm li span:nth-child(n + 3) {
+    width: 100%;
+    text-align: end;
+}
