@@ -9,25 +9,34 @@ namespace Inc\Pages;
 use Inc\Api\SettingsAPI;
 use Inc\Base\BaseController;
 use Inc\Api\Callbacks\AdminCallbacks;
+use Inc\Api\LastfmAPI;
+
+
 
 class Admin extends BaseController {
 
 	public $settings;
 	public $callbacks;
+	public $lastfm;
 	public $pages = array();
+	public $config;
+	public $twitter;
+	public $user_id;
+
 
 
 	public function register() {
-
 		$this->settings  = new SettingsAPI();
 		$this->callbacks = new AdminCallbacks();
+		$this->lastfm    = new LastfmAPI();
+		$this->config    = require_once $this->plugin_path . '/config.php';
 		$this->setPages();
 		$this->setSettings();
 		$this->setSections();
 		$this->setFields();
-
 		$this->settings->addPages( $this->pages )->register();
 	}
+
 
 	function setPages() {
 		$this->pages = array(

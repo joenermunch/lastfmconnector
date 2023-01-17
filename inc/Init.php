@@ -19,7 +19,7 @@ final class Init {
 			Pages\Admin::class,
 			Base\Enqueue::class,
 			Base\SettingsLinks::class,
-			Shortcodes\LastfmAPI::class,
+			Shortcodes\LastfmAPIShortcodes::class,
 		);
 	}
 
