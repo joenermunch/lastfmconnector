@@ -2,8 +2,8 @@
 /*
 Plugin Name: Lastfm Connector
 Plugin URI: https://joener.io
-Description: A plugin that allows the user to showcase their top tracks using Last.fm's API.
-Version: 0.1
+Description: Last.fm Connector is a WordPress plugin which allows you to display your top tracks from Last.fm as a shortcode.
+Version: 1.0
 Author: Joener Münch
 Author URI: https://joener.io
 License: GPL
