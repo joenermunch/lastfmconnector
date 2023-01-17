@@ -29,7 +29,6 @@ class Admin extends BaseController {
 		$this->settings  = new SettingsAPI();
 		$this->callbacks = new AdminCallbacks();
 		$this->lastfm    = new LastfmAPI();
-		$this->config    = require_once $this->plugin_path . '/config.php';
 		$this->setPages();
 		$this->setSettings();
 		$this->setSections();
