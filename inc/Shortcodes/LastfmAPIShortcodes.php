@@ -7,23 +7,23 @@
 namespace Inc\Shortcodes;
 
 use Inc\Base\BaseController;
+use Inc\Api\LastfmAPI;
 
-class LastfmAPI extends BaseController {
+class LastfmAPIShortcodes extends BaseController {
 
 	public $api_key;
+	public $last_fm;
 
 	public function __construct() {
+		$this->last_fm = new LastfmAPI();
 		$this->api_key = get_option( 'last_fm_api_key' );
 		add_shortcode( 'lastfm_top_tracks', array( $this, 'topTracks' ) );
 	}
 
 	public function topTracks( $atts ) {
-		$api_key  = get_option( 'last_fm_api_key' );
-		$username = $atts['username'];
-		$url      = "http://ws.audioscrobbler.com/2.0/?method=user.gettoptracks&user=$username&api_key=$api_key&limit=15&format=json";
-		$response = wp_remote_get( $url );
-		$data     = json_decode( wp_remote_retrieve_body( $response ), true );
-		$output   = '';
+		$data = $this->last_fm->connectFM( $atts );
+
+		$output = '';
 		if ( isset( $data['error'] ) ) {
 			$output = 'Error: ' . $data['message'];
 		} elseif ( isset( $data['toptracks']['track'] ) ) {
